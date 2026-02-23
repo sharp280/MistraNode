@@ -15,8 +15,7 @@ class AIChat(commands.Cog):
         
         # Завантаження локальної бази знань для диплома (RAG)
         self.knowledge_base = self.load_knowledge()
-        
-        # Твій уточнений системний промпт
+
         self.system_instructions = (
             "IDENTITY: Mistra Node. ROLE: Autonomous Security & Crypto Intelligence. "
             "ORIGIN: Irpin, Ukraine. COORDINATOR: Double V. "
@@ -70,8 +69,7 @@ class AIChat(commands.Cog):
 
         channel_name = message.channel.name.lower()
 
-        # --- 1. ТИХА МОДЕРАЦІЯ (Crypto/Security) ---
-        # Тепер ця логіка однакова для обох аналітичних каналів
+        # 1. ТИХА МОДЕРАЦІЯ (Crypto/Security)
         if any(name in channel_name for name in ["crypto-analysis", "security-check"]):
             # Ігноруємо слеш-команди (наприклад, /check_url), щоб вони працювали
             if message.content.startswith("/"):
@@ -85,7 +83,7 @@ class AIChat(commands.Cog):
                     messages=[{"role": "user", "content": check_prompt}]
                 )
                 
-                # Якщо повідомлення не по темі — видаляємо (як у crypto-analysis)
+                # Якщо повідомлення не по темі — видаляємо 
                 if "NO" in check_resp.choices[0].message.content.strip().upper():
                     try:
                         await message.delete()
@@ -96,7 +94,7 @@ class AIChat(commands.Cog):
                 logger.error(f"Mod Error: {e}")
                 return
 
-        # --- 2. ТЕРМІНАЛЬНИЙ ЧАТ (AI-Chat / Premium) ---
+        #2. ТЕРМІНАЛЬНИЙ ЧАТ (AI-Chat / Premium)
         # ВАЖЛИВО: Тут ТІЛЬКИ канали для спілкування. Аналітичні канали ігноруються,
         # щоб бот не відповідав текстом там, де мають бути лише результати команд.
         is_premium = "premium" in channel_name

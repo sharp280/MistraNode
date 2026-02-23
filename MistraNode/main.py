@@ -34,7 +34,7 @@ class MistraNode(commands.Bot):
         super().__init__(
             command_prefix="!",
             intents=intents,
-            test_guilds=[1471810518414131233] # Твій ID сервера
+            test_guilds=[1471810518414131233] 
         )
 
     async def on_ready(self):
@@ -56,7 +56,7 @@ class MistraNode(commands.Bot):
         base_path = os.path.dirname(os.path.abspath(__file__))
         cogs_path = os.path.join(base_path, "cogs")
 
-        # Прибрали емодзі 📂, щоб не було UnicodeEncodeError
+        # Прибрали емодзі, щоб не було UnicodeEncodeError
         print(f"--- Checking directory: {cogs_path} ---")
 
         if not os.path.exists(cogs_path):

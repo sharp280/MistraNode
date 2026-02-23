@@ -35,7 +35,7 @@ class System(commands.Cog):
         
         await inter.edit_original_message(embed=embed)
 
-    # --- НОВА КОМАНДА ДЛЯ ДИПЛОМА: СТРЕС-ТЕСТ ---
+    #  СТРЕС-ТЕСТ
     @commands.slash_command(description="🔬 Запустити аналіз продуктивності (Developer Only)")
     async def stress_test(self, inter: disnake.ApplicationCommandInteraction, duration: int = 5):
         # Перевірка на закритий канал

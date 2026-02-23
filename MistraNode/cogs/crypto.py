@@ -9,13 +9,13 @@ logger = logging.getLogger('MistraNode')
 class Crypto(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
-        self.alerts = []  # Твій список активних алертів
+        self.alerts = []  
         self.crypto_monitor.start()
 
     def cog_unload(self):
         self.crypto_monitor.cancel()
 
-    # --- 1. КОМАНДА ЦІНИ (З PREMIUM-АНАЛІТИКОЮ) ---
+    # 1. КОМАНДА ЦІНИ (З PREMIUM-АНАЛІТИКОЮ) 
     @commands.slash_command(description="Дізнатися поточну ціну криптовалюти")
     async def price(self, inter: disnake.ApplicationCommandInteraction, symbol: str = "BTC"):
         # Перевірка дозволених каналів
@@ -72,10 +72,10 @@ class Crypto(commands.Cog):
                 else:
                     await inter.edit_original_message(content=f"ERROR: InvalidTicker {symbol}.")
 
-    # --- 2. КОМАНДА ІНДЕКСУ СТРАХУ (ТЕПЕР З ОБМЕЖЕННЯМ КАНАЛУ) ---
+    # 2. КОМАНДА ІНДЕКСУ СТРАХУ 
     @commands.slash_command(description="Глибокий аналіз настроїв ринку")
     async def market_analysis(self, inter: disnake.ApplicationCommandInteraction):
-        # ДОДАЄМО ОБМЕЖЕННЯ ТУТ, ЩОБ ПРИБРАТИ "КАШУ"
+        # ДОДАЄМО ОБМЕЖЕННЯ 
         if not any(name in inter.channel.name.lower() for name in ["crypto", "analysis", "premium"]):
             await inter.response.send_message("❌ Використовуйте канал #crypto-analysis або Premium-зону", ephemeral=True)
             return

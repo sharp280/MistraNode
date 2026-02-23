@@ -78,7 +78,7 @@ class Security(commands.Cog):
             logger.error(f"VT Error: {e}")
 
         # 5. Формування фінального Embed
-        risk_score = min(risk_score, 100) # Обмежуємо 100%
+        risk_score = min(risk_score, 100) 
         is_premium = "premium" in inter.channel.name.lower()
         
         # Колірна індикація
@@ -101,7 +101,7 @@ class Security(commands.Cog):
                     messages=[{"role": "user", "content": prompt}]
                 )
                 embed.add_field(name="💎 Елітна порада (Mistral Large)", value=f"*{ai_resp.choices[0].message.content.strip()}*", inline=False)
-                embed.color = disnake.Color.gold() # Золотий колір для преміуму
+                embed.color = disnake.Color.gold()
 
         embed.set_footer(text="Mistra Security Lab | Irpin 2026")
         await inter.edit_original_message(embed=embed)
