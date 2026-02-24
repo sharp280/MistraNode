@@ -1,0 +1,6 @@
+disnake
+mistralai
+psutil
+aiohttp
+python-dotenv
+python-whois
