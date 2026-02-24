@@ -60,7 +60,8 @@ class AIChat(commands.Cog):
         embed.add_field(name="🚀 Стек", value="Python 3.10 | Disnake | Mistral AI | VirusTotal OSINT", inline=False)
         embed.add_field(name="📍 Локація вузла", value="Irpin Security Lab (Ukraine)", inline=True)
         embed.add_field(name="👤 Розробник", value="Віктор Б. (Double V)", inline=True)
-        await inter.send_message(embed=embed, ephemeral=True)
+        
+        await inter.response.send_message(embed=embed, ephemeral=True)
 
     @commands.Cog.listener()
     async def on_message(self, message):
